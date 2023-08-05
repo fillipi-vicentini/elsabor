@@ -1,4 +1,5 @@
 'use client'
+
 import { useState } from 'react';
 
 const headers = {
@@ -7,23 +8,13 @@ const headers = {
 
 
 export default function Reservas() {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [telefone, setTelefone] = useState('');
+  
     const [data, setData] = useState('');
     const [hora, setHora] = useState('');
     const [observacao, setObservacao] = useState('');
     const [error, setError] = useState({message:'', input: ''});
 
-    const onChangeName = (evento) => {
-        setName(evento.target.value);
-    }
-    const onChangeEmail = (evento) => {
-        setEmail(evento.target.value);
-    }
-    const onChangeTelefone = (evento) => {
-        setTelefone(evento.target.value);
-    }
+ 
     const onChangeData = (evento) => {
         setData(evento.target.value);
     }
@@ -37,9 +28,6 @@ export default function Reservas() {
         e.preventDefault();
 
         const formulario = {
-            name,
-            email,
-            telefone,
             hora,
             data,
             observacao
@@ -69,18 +57,7 @@ export default function Reservas() {
             </div>
 
             <form onSubmit={onSubmitForm}>
-
-                <label for="name">Nome:  </label>
-                <input type="text" id="name" name="name"  onChange={(evento) => onChangeName(evento)} />
-                <span style={{color:'red'}}>{(error.message.length > 0 && error.input == 'name') && error.message}</span>
-                
-                <label for="email">E-mail: </label>
-                <input type="email" id="email" name="e-mail"  onChange={(evento) => onChangeEmail(evento)} />
-                <span style={{color:'red'}}>{(error.message.length > 0 && error.input == 'email') && error.message}</span>
-
-                <label for="telefone">Telefone:</label>
-                <input type="text" id="telefone" name="Telefone" required onChange={(evento) => onChangeTelefone(evento)} />
-
+               
                 <label for="date">Data:</label>
                 <input type="date" id="date" name="date" required onChange={(evento) => onChangeData(evento)} />
 

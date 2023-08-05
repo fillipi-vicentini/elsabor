@@ -3,11 +3,13 @@
 
 import { NextResponse } from "next/server"
 
+
+
+ 
 export async function PUT(
     request
 ) {
     const form = await request.json();
-
 
     if (form.name.length <= 0) return new NextResponse(JSON.stringify({ message: 'Nome inválido', input: 'name' }), {
         status: 400
@@ -45,21 +47,3 @@ export async function PUT(
 
 }
 
-export async function DELETE(
-    request,
-    { params }
-  ) {
-    const id = params.id 
-    try {
-       const deletarDoBanco = await banco.delete(id);
-
-       return new NextResponse('Dados deletados com sucesso', {
-            status: 201,
-        });
-    
-    }catch(error) {
-        return new NextResponse('Erro interno do servidor', {
-            status: 500,
-        })
-    }
-  }
